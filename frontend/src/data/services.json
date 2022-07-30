@@ -1,0 +1,25 @@
+[
+    {
+        "id":1,
+        "title":"Coffee Bean Roasting",
+        "price":"$30.50",
+        "desc":"This classic and traditional roasting service is perfect if you want your coffee to be prepared the right way or to explerience the taste of coffee.",
+        "image":"service-1.png" 
+    },
+    {
+        "id":2,
+        "title":"Dozens Of Coffee Type",
+        "price":"$40.50",
+        "desc":"Select your favorite coffee blend from dozens of those available at Coffee Shop. discover the world of Coffee with us!",
+        "image":"service-2.png"
+    },
+    {
+        "id":3,
+        "title":"Dozens Of Coffee Type",
+        "price":"$20.50",
+        "desc":"Select your favorite coffee blend from dozens of those available at Coffee Shop. discover the world of Coffee with us!",
+        "image":"service-3.png"
+        
+    }
+
+]

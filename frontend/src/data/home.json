@@ -1,0 +1,71 @@
+{
+    "home_pic": [
+        "coffee-1.jpg",
+        "coffee-2.jpg",
+        "coffee-3.jpg"
+    ],
+    "home_service": [
+        {
+            "id": 1,
+            "name": "Selected Coffee beans",
+            "desc": "Enjoy the aroma of selected coffee beans available at our shop.",
+            "image": "service_2.png",
+            "width": "10px"
+        },
+        {
+            "id": 2,
+            "name": "Elite Coffee",
+            "desc": "Take a sip of Elite Coffee, and revel in the different tastes.",
+            "image": "service_3.png",
+            "width": "10px"
+        },
+        {
+            "id": 3,
+            "name": "Tasty Coffee",
+            "desc": "At Coffee Shop you can find lots of tasty coffee flavors",
+            "image": "service_1.png",
+            "width": "10px"
+        },
+        {
+            "id": 4,
+            "name": "Cooking Coffee",
+            "desc": "If you prefer to cook coffee, we have something special for you.",
+            "image": "service_4.png",
+            "width": "10px"
+        }
+    ],
+    "home_products": [
+        {
+            "id": 1,
+            "name": "Americano",
+            "desc": "An espresso-based drink designed to resemble coffee in a cup.",
+            "image": "americano.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Espresso",
+            "desc": "One of the most popular coffee variations nowadays.",
+            "image": "espresso.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Cappucino",
+            "desc": "This famous Italian coffee drink has a delicate taste and aroma.",
+            "image": "cappucino.jpg"
+        }
+    ],
+    "home_blog":[
+        {
+            "id":1,
+            "name":"blog-1.jpg"
+        },
+        {
+            "id":2,
+            "name":"blog-2.jpg"
+        },
+        {
+            "id":3,
+            "name":"blog-3.jpg"
+        }
+    ]
+}
