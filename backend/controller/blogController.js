@@ -1,5 +1,6 @@
 const Blog = require("../model/Blog");
 
+// menampilkan isi blog
 const displayBlog = async (req, res) => {
   try {
     await Blog.find()
@@ -12,6 +13,7 @@ const displayBlog = async (req, res) => {
   }
 };
 
+// menampilkan isi blog yang dipilih
 const displaySelectedBlog = async (req, res) => {
   try {
     await Blog.findById(req.params.id)
@@ -24,6 +26,7 @@ const displaySelectedBlog = async (req, res) => {
   }
 };
 
+// menambahkan konten
 const addBlog = async (req, res) => {
   const { title, desc, image, time, post } = req.body;
 
@@ -42,6 +45,7 @@ const addBlog = async (req, res) => {
   }
 };
 
+// update isi blog
 const updateBlog = async (req, res) => {
   const id = req.params.id;
   const { title, desc, image, time, post } = req.body;
@@ -61,6 +65,7 @@ const updateBlog = async (req, res) => {
   }
 };
 
+// menghapus blog
 const deleteBlog = async (req, res) => {
   const id = req.params.id;
   try {

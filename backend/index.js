@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const multer = require("multer");
 const cors = require("cors");
 const app = express();
 
 // router
 const blogRouter = require("./routes/blogRoutes");
+const serviceRouter = require("./routes/serviceRoutes")
+const productRouter = require("./routes/productRoutes")
 
 // Middleware
 
@@ -14,10 +15,10 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-
 // Import routes
 app.use("/blog",blogRouter);
-
+app.use("/service",serviceRouter);
+app.use("/product",productRouter);
 
 
 mongoose
