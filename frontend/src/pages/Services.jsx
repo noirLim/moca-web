@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   useMediaQuery,
@@ -8,9 +8,9 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-
+import axios from "axios";
 import gambar from "../images/services/banner_services.jpg";
-import serviceData from "../data/services.json";
+import { useEffect } from "react";
 
 const Banner = styled("div")`
   height: 50vh;
@@ -34,40 +34,54 @@ const BlogCard = styled("div")`
 
 const BlogCardMob = styled("div")`
   width: 80vw;
-  height:60vh;
+  height: 60vh;
   background-color: white;
   background-size: cover;
   backgound-repeat: no-repeat;
   background-position: 50% 50%;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 `;
+
+
 
 const Services = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("lg"));
+  const [service,setService] = useState([]);
+
+  useEffect(()=>{
+    fetchData()
+  },[])
+
+  const fetchData = async () => {
+    const response = await axios.get('http://localhost:5000/service');
+    setService(response.data);
+  };
+
+  console.log(service)
 
   const ServiceCard = (props) => {
     const value = props.val;
     return (
       <div>
-        {serviceData
-          .filter((data) => data.id == value)
+        {service
+          .filter((data) => data.inc == value)
           .map((dt, key) => {
             return (
               <>
-                {dt.id % 2 == 0 ? (
+                {dt.inc % 2 == 0 ? (
                   <BlogCard
-                   key={key}
+                    key={key}
                     sx={{
                       backgroundImage: `url(${require("../images/services/" +
-                        dt.image)})`,
+                        dt.serviceImage.substring(7))})`,
                       position: "relative",
                     }}
                   >
                     <div className=" h-auto w-[20vw] absolute inset-x-[5.5vw] top-[3vw]">
                       <h1 className="text-white text-3xl  font-title">
-                        Dozens Of Coffee Type
+                        {dt.title}
                       </h1>
                       <span className="text-white text-left text-lg font-title">
                         $40.50
@@ -83,7 +97,7 @@ const Services = () => {
                   <BlogCard
                     sx={{
                       backgroundImage: `url(${require("../images/services/" +
-                        dt.image)})`,
+                      dt.serviceImage.substring(7))})`,
                       position: "relative",
                     }}
                     key={key}
@@ -104,6 +118,7 @@ const Services = () => {
               </>
             );
           })}
+
       </div>
     );
   };
@@ -112,20 +127,20 @@ const Services = () => {
     const val = props.val;
     return (
       <div>
-        {serviceData
-          .filter((data) => data.id == val)
+        {service
+          .filter((data) => data.inc == val)
           .map((dt, key) => {
-            return dt.id % 2 == 0 ? (
+            return dt.inc % 2 == 0 ? (
               <BlogCardMob
                 key={key}
                 sx={{
                   backgroundImage: `url(${require("../images/services/" +
-                    dt.image)})`,
+                    dt.serviceImage.substring(7))})`,
                   position: "relative",
                 }}
               >
                 <div className=" h-auto w-[40vw] absolute inset-x-[8vw] top-[10vw]">
-                <h1 className="text-white text-md font-title">{dt.title}</h1>
+                  <h1 className="text-white text-md font-title">{dt.title}</h1>
                   <span className="text-white text-left text-sm font-title">
                     {dt.price}
                   </span>
@@ -136,11 +151,11 @@ const Services = () => {
               </BlogCardMob>
             ) : (
               <BlogCardMob
-                sx={{
-                  backgroundImage: `url(${require("../images/services/" +
-                    dt.image)})`,
-                  position: "relative",
-                }}
+              sx={{
+                backgroundImage: `url(${require("../images/services/" +
+                  dt.serviceImage.substring(7))})`,
+                position: "relative",
+              }}
                 key={key}
               >
                 <div className=" h-auto w-[40vw] absolute inset-x-[32vw] top-[10vw]">
@@ -198,16 +213,16 @@ const Services = () => {
             </p>
           </Grid>
           <div style={{ marginTop: "5vw" }}>
-            {serviceData.map((data, key) => {
+            {service.map((data, key) => {
               return (
                 <div key={key}>
                   {isMatch ? (
                     <Grid item xs={6}>
-                      <ServiceCardMob val={data.id} />
+                      <ServiceCardMob val={data.inc} />
                     </Grid>
                   ) : (
                     <Grid item md={6}>
-                      <ServiceCard val={data.id} />
+                      <ServiceCard val={data.inc} />
                     </Grid>
                   )}
                 </div>
@@ -215,7 +230,9 @@ const Services = () => {
             })}
           </div>
         </Grid>
+
       </Container>
+
     </div>
   );
 };

@@ -17,7 +17,7 @@ const NavBar = () => {
     text-gray-800"
         >
           <span className="text-3xl text-indigo-600 mr-1 pt-2">
-            <ion-icon name="cafe-outline" style={{color:'#d39128'}} />
+            <ion-icon name="cafe-outline" style={{ color: "#d39128" }} />
           </span>
           Moca
         </div>
@@ -36,8 +36,11 @@ const NavBar = () => {
         >
           {Links.map((link) => (
             <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
-              <Link to={link.link}   className="text-gray-800 hover:text-gray-400 duration-500 font-body cursor-pointer">
-                  {link.name}
+              <Link
+                to={link.link}
+                className="text-gray-800 hover:text-gray-400 duration-500 font-body cursor-pointer"
+              >
+                {link.name}
               </Link>
             </li>
           ))}
@@ -45,7 +48,9 @@ const NavBar = () => {
             className="bg-coffee text-white  py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 
            duration-500 font-body"
           >
-            Buy Now
+            <Link to={"/products"} className="cursor-pointer">
+              Products
+            </Link>
           </button>
         </ul>
       </div>
