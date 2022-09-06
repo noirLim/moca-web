@@ -14,6 +14,10 @@ const serviceSchema = new Schema({
     type: String,
     required: true,
   },
+  serviceImage:{
+    type:String,
+    required:true
+  },
   inc: {
     type: Number,
     required: true,

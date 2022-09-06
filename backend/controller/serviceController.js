@@ -1,4 +1,5 @@
 const Service = require("../model/Service");
+const path = require("path");
 
 const displayServices = async (req, res) => {
   try {
@@ -13,33 +14,43 @@ const displayServices = async (req, res) => {
 
 const addServices = async (req, res) => {
   const { title, price, desc, inc } = req.body;
-  try {
+
     const service = new Service({
       title,
       price,
       desc,
       inc,
     });
-    await service.save();
-    res.status(200).json(service);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+    if(req.file){
+      service.serviceImage = req.file.path
+    }
+    
+    service.save()
+    .then((result)=>{
+      res.status(200).json(result)
+    })
+    .catch((err)=>{
+      res.status(200).json(err)
+    })
 };
 
 const updateService = async (req, res) => {
   const id = req.params.id;
-  const { title, price, desc } = req.body;
-  try {
-    const service = await Service.findByIdAndUpdate(id, {
+  const {title,price,desc,inc} = req.body
+  const serviceImage = req.file.filename;
+
+  try{
+    const service = await Service.findByIdAndUpdate(id,{
       title,
       price,
       desc,
-    });
+      serviceImage,
+      inc
+    })
     await service.save();
-    res.status(200).json(service);
-  } catch (err) {
-    res.status(500).json(err);
+    res.status(200).json(service)
+  }catch(err){
+    res.status(500).json(err)
   }
 };
 

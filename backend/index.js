@@ -10,7 +10,7 @@ const serviceRouter = require("./routes/serviceRoutes")
 const productRouter = require("./routes/productRoutes")
 
 // Middleware
-
+app.use('/uploads', express.static('public/'))
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());

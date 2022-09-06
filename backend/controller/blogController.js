@@ -1,4 +1,5 @@
 const Blog = require("../model/Blog");
+const path = require("path");
 
 // menampilkan isi blog
 const displayBlog = async (req, res) => {
@@ -17,7 +18,7 @@ const displayBlog = async (req, res) => {
 const displaySelectedBlog = async (req, res) => {
   try {
     await Blog.findById(req.params.id)
-      .select({ _id: 1, post: 1 })
+      .select({_id:1,  post: 1 })
       .then((Result) => {
         res.status(200).json(Result);
       });
@@ -28,16 +29,18 @@ const displaySelectedBlog = async (req, res) => {
 
 // menambahkan konten
 const addBlog = async (req, res) => {
-  const { title, desc, image, time, post } = req.body;
+  const { title, desc, post } = req.body;
 
   try {
     const blog = new Blog({
       title,
       desc,
-      image,
-      time,
       post,
     });
+    if(req.file){
+      blog.image = req.file.path
+    }
+
     await blog.save();
     res.status(200).json(blog);
   } catch (err) {
